@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { get_all_quote } from "../gqloperations/queries";
 import { Link } from "react-router-dom";
 
-function Home() {
+const Home = () => {
   const { loading, error, data } = useQuery(get_all_quote);
 
   if (loading) {
@@ -35,28 +35,22 @@ function Home() {
       <h4 className="center-align deep-purple-text text-darken-3">📜 Inspirational Quotes</h4>
       <div className="divider" style={{ margin: "20px 0" }}></div>
 
-      <div className="row">
+      <div className="quote-grid">
         {data.quotes.map((quote) => (
-          <div key={quote._id} className="col s12 m6 l4">
-            <div className="card z-depth-2 hoverable animated fadeIn" style={{ transition: "all 0.3s ease-in-out", marginBottom: "20px" }}>
-              <div className="card-content">
-                <blockquote>
-                  <h6 className="blue-grey-text text-darken-3" style={{ fontStyle: "italic", fontSize: "1rem" }}>
-                    “{quote.name}”
-                  </h6>
-                  <Link to={`/profile/${quote.by._id}`}>
-                    <p className="right-align pink-text text-darken-1" style={{ fontWeight: 500, marginTop: "10px" }}>
-                      — {quote.by.firstname}
-                    </p>
-                  </Link>
-                </blockquote>
-              </div>
+          <div key={quote._id} className="quote-card card z-depth-2 hoverable animated fadeIn">
+            <div className="card-content">
+              <blockquote className="custom-blockquote">
+                <p className="quote-text">“{quote.name}”</p>
+                <Link to={`/profile/${quote.by._id}`}>
+                  <p className="author-text">— {quote.by.firstname}</p>
+                </Link>
+              </blockquote>
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Home;
