@@ -40,11 +40,11 @@ const Home = () => {
           <div key={quote._id} className="quote-card card z-depth-2 hoverable animated fadeIn">
             <div className="card-content">
               <blockquote className="custom-blockquote">
-  <p className="quote-text">“{quote.name}”</p>
-  <Link to={`/profile/${quote.by._id}`}>
-    <p className="author-text">— {quote.by.firstname}</p>
-  </Link>
-</blockquote>
+                <p className="quote-text">“{quote.name}”</p>
+                <Link to={`/profile/${quote.by._id}`}>
+                  <p className="author-text">— {quote.by.firstname}</p>
+                </Link>
+              </blockquote>
             </div>
           </div>
         ))}
