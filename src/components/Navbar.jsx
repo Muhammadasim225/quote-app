@@ -22,7 +22,7 @@ const Navbar = () => {
     <>
       <nav className="deep-purple darken-2 z-depth-1">
         <div className="nav-wrapper container">
-          <Link to="/" className="brand-logo">QuoteApp</Link>
+          <Link to="/" className="brand-logo">Inspiro</Link>
           <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
