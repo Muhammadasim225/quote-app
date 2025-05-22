@@ -96,7 +96,7 @@ const Signup = () => {
             </div>
 
             <div className="right-align" style={{ marginBottom: "20px" }}>
-              <Link to="/login" className="deep-purple-text text-darken-3">
+              <Link to="/login" className="pink-text text-lighten-1">
                 Already have an account?
               </Link>
             </div>
