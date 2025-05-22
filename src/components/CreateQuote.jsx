@@ -66,7 +66,7 @@ const CreateQuote = () => {
 
             <button
               type="submit"
-              className="btn waves-effect waves-light blue-grey darken-2 z-depth-1"
+              className="btn waves-effect waves-light deep-purple darken-2 z-depth-1"
               style={{ width: "100%" }}
               disabled={loading}
             >
