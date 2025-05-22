@@ -1,17 +1,101 @@
-<<<<<<< HEAD
-# React + Vite
+# 📜 Quote App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive Quote Application built with React, Apollo Client, GraphQL, JWT authentication, and Materialize CSS. This frontend interfaces seamlessly with a Node.js backend powered by Apollo Server and MongoDB.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [Visit the Live App](https://quote-app-dun.vercel.app/)
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# quote-app
-A React-based Quote App using Apollo Client, GraphQL, JWT authentication, and Materialize CSS.
->>>>>>> 7dbdce9d17047c360c0b3ca28a5192903f562709
+- **Frontend**: React, React Router, Apollo Client, Materialize CSS
+- **Backend**: Node.js, Express, Apollo Server, MongoDB
+- **Authentication**: JSON Web Tokens (JWT)
+- **Profile Images**: RoboHash API
+- **Deployment**: Vercel (Frontend), Railway (Backend), MongoDB Atlas (Database)
+
+## 📸 Features
+
+- 🔐 User Authentication (Signup/Login) with JWT
+- 📝 Create, Read, Update, and Delete Quotes
+- 👤 View Personal and Other Users' Profiles
+- 🎨 Responsive Design with Materialize CSS
+- 🖼️ Random Profile Images via RoboHash API
+- ⚡ Efficient State Management with Apollo Client Cache
+
+## 🖥️ Project Structure
+
+```bash
+frontend/
+├── node_modules/          → Project dependencies (auto-generated)
+├── public/                → Static files (e.g., index.html)
+├── src/                   → All source code
+│   ├── assets/            → (Optional) Images, icons, etc.
+│   ├── components/        → All React UI components:
+│   │   ├── CreateQuote.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── NotFound.jsx
+│   │   ├── OtherUserProfile.jsx
+│   │   ├── Profile.jsx
+│   │   └── Signup.jsx
+│   ├── gqloperations/     → GraphQL operations:
+│   │   ├── mutations.js   → All GraphQL mutations
+│   │   └── queries.js     → All GraphQL queries
+│   ├── App.css            → Component styles
+│   ├── App.jsx            → Main app logic and routing
+│   ├── index.css          → Global styles
+│   └── main.jsx           → Entry point for the React app
+├── .gitignore             → Files Git should ignore
+├── eslint.config.js       → Linting rules
+├── index.html             → HTML template
+├── package.json           → Project metadata & dependencies
+├── README.md              → Project documentation
+└── vite.config.js         → Vite configuration
+```
+
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Muhammadasim225/quote-app.git
+   cd quote-app
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Configure Environment Variables:**
+
+   Create a .env file in the root directory and add:
+
+   ```bash  
+   VITE_API_URL=https://your-backend-url.com/graphql
+   ```
+   
+4. **Run the application:**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   
+   The app should now be running at http://localhost:5173.
+
+
