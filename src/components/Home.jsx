@@ -35,22 +35,26 @@ function Home() {
       <h4 className="center-align deep-purple-text text-darken-3">📜 Inspirational Quotes</h4>
       <div className="divider" style={{ margin: "20px 0" }}></div>
 
-      {data.quotes.map((quote) => (
-        <div className="card z-depth-2 hoverable animated fadeIn" key={quote._id} style={{ marginBottom: "25px", transition: "all 0.3s ease-in-out" }}>
-          <div className="card-content">
-            <blockquote>
-              <h6 className="blue-grey-text text-darken-3" style={{ fontStyle: "italic", marginBottom: "15px" }}>
-                “{quote.name}”
-              </h6>
-              <Link to={`/profile/${quote.by._id}`}>
-                <p className="right-align pink-text text-darken-1" style={{ fontWeight: 500 }}>
-                  — {quote.by.firstname}
-                </p>
-              </Link>
-            </blockquote>
+      <div className="row">
+        {data.quotes.map((quote) => (
+          <div key={quote._id} className="col s12 m6 l4">
+            <div className="card z-depth-2 hoverable animated fadeIn" style={{ transition: "all 0.3s ease-in-out", marginBottom: "20px" }}>
+              <div className="card-content">
+                <blockquote>
+                  <h6 className="blue-grey-text text-darken-3" style={{ fontStyle: "italic", fontSize: "1rem" }}>
+                    “{quote.name}”
+                  </h6>
+                  <Link to={`/profile/${quote.by._id}`}>
+                    <p className="right-align pink-text text-darken-1" style={{ fontWeight: 500, marginTop: "10px" }}>
+                      — {quote.by.firstname}
+                    </p>
+                  </Link>
+                </blockquote>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
