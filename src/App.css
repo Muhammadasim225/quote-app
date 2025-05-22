@@ -56,6 +56,10 @@ input[type="password"] {
 
 .quote-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .quote-card:hover {
@@ -67,12 +71,22 @@ input[type="password"] {
   border-left: 4px solid #7e57c2;
   padding-left: 15px;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .quote-text {
   font-style: italic;
   color: #37474f; /* blue-grey darken-3 */
   font-size: 1.1rem;
+  line-height: 1.5;
+  max-height: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7; /* number of lines before cutting */
+  -webkit-box-orient: vertical;
 }
 
 .author-text {
@@ -81,6 +95,13 @@ input[type="password"] {
   color: #ec407a; /* pink lighten-1 */
   margin-top: 10px;
   display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .quote-text {
+    font-size: 1rem;
+    -webkit-line-clamp: 6;
+  }
 }
 
 @keyframes fadeIn {
