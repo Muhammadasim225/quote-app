@@ -5,16 +5,12 @@ import { get_login } from '../gqloperations/mutations';
 import { getMyProfile } from '../gqloperations/queries';
 
 const Login = () => {
-  const client=useApolloClient();
+  const client = useApolloClient();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [signInUser, { error, loading, data }] = useMutation(get_login,{
-        refetchQueries: [
-          { query: 
-            getMyProfile
-          },
-        ]
-      });
+  const [signInUser, { error, loading, data }] = useMutation(get_login, {
+    refetchQueries: [{ query: getMyProfile }]
+  });
 
   if (data) {
     localStorage.setItem('token', data.loginUser.token);
@@ -28,21 +24,19 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     signInUser({
-      variables: {
-        userSignIn: formData
-      }
+      variables: { userSignIn: formData }
     });
     await client.resetStore();
   };
 
   return (
     <div className="container" style={{ maxWidth: '500px', marginTop: '8%' }}>
-      <div className="card z-depth-3">
+      <div className="card z-depth-3 hoverable animated fadeIn">
         <div className="card-content">
-          <h4 className="center-align blue-grey-text text-darken-3">🔐 Login</h4>
+          <h4 className="center-align deep-purple-text text-darken-3">🔐 Login</h4>
           <div className="divider" style={{ margin: '20px 0' }}></div>
 
           {error && (
@@ -52,17 +46,18 @@ const Login = () => {
           )}
 
           {loading && (
-            <div className="progress">
-              <div className="indeterminate"></div>
+            <div className="progress pink lighten-3">
+              <div className="indeterminate pink darken-1"></div>
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className="input-field">
               <input
                 type="email"
                 name="email"
                 id="email"
+                className="validate"
                 onChange={handleChange}
                 required
               />
@@ -74,6 +69,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
+                className="validate"
                 onChange={handleChange}
                 required
               />
@@ -81,13 +77,13 @@ const Login = () => {
             </div>
 
             <div className="right-align" style={{ marginBottom: '20px' }}>
-              <Link to="/signup" className="blue-text text-darken-2">
+              <Link to="/signup" className="pink-text text-lighten-1">
                 Don’t have an account?
               </Link>
             </div>
 
             <button
-              className="btn waves-effect waves-light blue-grey darken-2 z-depth-1"
+              className="btn waves-effect waves-light deep-purple darken-2 z-depth-1"
               type="submit"
               style={{ width: '100%' }}
             >
