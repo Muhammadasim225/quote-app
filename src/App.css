@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-/* ========== Body Styling ========== */
+/* ========== Base Typography ========== */
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #fafafa;
@@ -13,12 +13,30 @@ body {
   line-height: 1.6;
 }
 
-/* ========== Headings ========== */
 h4, h5, h6 {
   font-weight: 500;
+  color: #37474f;
 }
 
-/* ========== Responsive Quote Grid ========== */
+/* ========== NavBar Styling ========== */
+.nav-wrapper .brand-logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.nav-wrapper a {
+  transition: color 0.3s ease;
+}
+
+.nav-wrapper a:hover {
+  color: #ec407a !important;
+}
+
+.sidenav {
+  padding-top: 20px;
+}
+
+/* ========== Grid Layout for Quotes ========== */
 .quote-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -37,13 +55,10 @@ h4, h5, h6 {
   }
 }
 
-/* ========== Quote Card Styling ========== */
+/* ========== Quote Card ========== */
 .quote-card {
+  margin-bottom: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
 }
 
 .quote-card:hover {
@@ -51,7 +66,6 @@ h4, h5, h6 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* ========== Blockquote ========== */
 .custom-blockquote {
   border-left: 4px solid #7e57c2;
   padding-left: 15px;
@@ -60,17 +74,14 @@ h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-/* ========== Quote Text ========== */
 .quote-text {
   font-style: italic;
   color: #37474f;
   font-size: 1.1rem;
-  line-height: 1.6;
-  word-break: break-word;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
-/* ========== Author Text ========== */
 .author-text {
   font-weight: 500;
   text-align: right;
@@ -79,9 +90,55 @@ h4, h5, h6 {
   display: block;
 }
 
-/* ========== Preloader Spinner Centering ========== */
+/* ========== Form Styling ========== */
+.auth-container,
+.quote-form-container {
+  max-width: 550px;
+  margin: 8% auto;
+}
+
+.auth-card,
+.quote-form-card {
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.input-field input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-size: 1rem;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.input-field label {
+  color: #607d8b;
+}
+
+.input-field label.active {
+  transform: translateY(-20px) scale(0.8);
+}
+
+button.btn {
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* ========== Status Panels ========== */
+.card-panel.green,
+.card-panel.red {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* ========== Loader & Center Align ========== */
 .center-align {
   text-align: center;
+}
+
+.preloader-wrapper {
+  margin-top: 20px;
 }
 
 /* ========== Animations ========== */
@@ -100,38 +157,32 @@ h4, h5, h6 {
   animation: fadeIn 0.5s ease-in both;
 }
 
-/* ========== Form Layout Fixes ========== */
-input[type="email"],
-input[type="password"],
-input[type="text"] {
-  font-size: 1rem;
-  padding-left: 10px;
+/* ========== Profile Page ========== */
+.profile-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 0 15px;
 }
 
-button.btn {
-  font-weight: 500;
-  font-size: 1rem;
+.profile-card {
+  padding: 25px 15px;
+  border-radius: 8px;
 }
 
-/* ========== Materialize Overrides ========== */
-.nav-wrapper .brand-logo {
-  font-size: 1.6rem;
-  font-weight: 600;
+.profile-img {
+  border: 3px solid #7e57c2;
+  padding: 4px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
-.nav-wrapper a {
-  transition: color 0.3s ease;
+.quotes-section {
+  margin-top: 30px;
 }
 
-.nav-wrapper a:hover {
-  color: #ec407a !important;
-}
-
-.sidenav {
-  padding-top: 20px;
-}
-
-/* ========== Responsive Typography ========== */
+/* ========== Responsive Typography Adjustments ========== */
 @media screen and (max-width: 600px) {
   .quote-text {
     font-size: 1rem;
@@ -148,153 +199,18 @@ button.btn {
   h4 {
     font-size: 1.6rem;
   }
-}
 
-
-/* ========== Auth Form Container ========== */
-.auth-container {
-  max-width: 550px;
-  margin: 8% auto;
-}
-
-.auth-card {
-  padding: 20px;
-  border-radius: 8px;
-}
-
-/* Responsive typography for forms */
-@media screen and (max-width: 600px) {
   .auth-container {
     margin: 12% auto;
     padding: 0 10px;
   }
 
-  .auth-card h4 {
-    font-size: 1.6rem;
-  }
-}
-
-/* Input field text and alignment */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  font-size: 1rem;
-  padding-left: 10px;
-  margin-bottom: 10px;
-}
-
-/* Form buttons */
-button.btn {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-/* Success message */
-.card-panel.green {
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-
-/* ====== Profile Page Styling ====== */
-.profile-container {
-  max-width: 700px;
-  margin: 50px auto;
-}
-
-.profile-card {
-  padding: 30px 15px;
-  border-radius: 8px;
-}
-
-.profile-img {
-  border: 3px solid #7e57c2;
-  padding: 4px;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-/* ====== Quotes Section ====== */
-.quotes-section {
-  margin-top: 30px;
-}
-
-.quote-card {
-  margin-bottom: 20px;
-  transition: all 0.3s ease-in-out;
-}
-
-.quote-card:hover {
-  transform: translateY(-4px);
-}
-
-/* ====== Typography ====== */
-.quote-text {
-  font-style: italic;
-  font-size: 1.05rem;
-  color: #37474f;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* Reuse from earlier styles */
-.custom-blockquote {
-  border-left: 4px solid #7e57c2;
-  padding-left: 15px;
-  margin: 0;
-}
-
-
-
-/* ===== CreateQuote Page ===== */
-.quote-form-container {
-  max-width: 550px;
-  margin: 60px auto;
-}
-
-.quote-form-card {
-  padding: 25px;
-  border-radius: 8px;
-}
-
-/* Improve input appearance */
-.input-field input[type="text"] {
-  font-size: 1rem;
-  padding-left: 10px;
-}
-
-.input-field label {
-  color: #607d8b; /* blue-grey */
-}
-
-/* Materialize override for active label */
-.input-field label.active {
-  transform: translateY(-20px) scale(0.8);
-}
-
-/* Feedback panels */
-.card-panel.green {
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-.card-panel.red {
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 600px) {
   .quote-form-container {
     margin: 20px auto;
     padding: 0 10px;
   }
 
-  .quote-form-card h4 {
-    font-size: 1.6rem;
+  .quotes-section h5 {
+    font-size: 1.5rem;
   }
 }
-
-
