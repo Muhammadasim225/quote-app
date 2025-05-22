@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import M from 'materialize-css';
 import { useApolloClient } from '@apollo/client';
-
 const Navbar = () => {
   const client = useApolloClient();
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    client.clearStore(); // Clear Apollo Client cache
+    client.clearStore(); // This clears the cache
     navigate('/login');
   };
 
@@ -27,17 +26,16 @@ const Navbar = () => {
           <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
-
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {token ? (
               <>
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="/create-quote">Create</Link></li>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
+                <li>
                   <button
                     onClick={handleLogout}
                     className="btn red lighten-1 waves-effect waves-light"
-                    style={{ margin: 0 }}
+                    style={{ marginTop: '8px' }}
                   >
                     Logout
                   </button>
@@ -63,7 +61,7 @@ const Navbar = () => {
               <button
                 onClick={handleLogout}
                 className="btn red lighten-1 waves-effect waves-light"
-                style={{ width: '100%', marginTop: '10px' }}
+                style={{ width: '100%', marginTop: '7px' }}
               >
                 Logout
               </button>
