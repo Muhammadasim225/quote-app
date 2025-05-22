@@ -61,7 +61,7 @@ const CreateQuote = () => {
                 placeholder="Write your inspirational quote..."
                 required
               />
-              <label htmlFor="quote" className="active">Quote</label>
+              <label htmlFor="quote" className="active deep-purple">Quote</label>
             </div>
 
             <button
