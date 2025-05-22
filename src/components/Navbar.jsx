@@ -20,25 +20,24 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="blue-grey darken-3">
+      <nav className="deep-purple darken-2 z-depth-1">
         <div className="nav-wrapper container">
           <Link to="/" className="brand-logo">QuoteApp</Link>
           <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+<ul id="nav-mobile" className="right hide-on-med-and-down" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {token ? (
               <>
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="/create-quote">Create</Link></li>
                 <li>
-                  <button
-                    onClick={handleLogout}
-                    className="btn red lighten-1 waves-effect waves-light"
-                    style={{ marginTop: '8px' }}
-                  >
-                    Logout
-                  </button>
+                 <button
+  onClick={handleLogout}
+  className="btn red lighten-1 waves-effect waves-light"
+>
+  Logout
+</button>
                 </li>
               </>
             ) : (
