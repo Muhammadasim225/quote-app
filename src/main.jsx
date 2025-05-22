@@ -11,7 +11,8 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  uri: import.meta.env.VITE_API_URL || "/graphql", // Use the VITE_API_URL variable, fallback to '/graphql' in development
+
   cache: new InMemoryCache(),
   headers:{
     authorization:localStorage.getItem("token") || " "
