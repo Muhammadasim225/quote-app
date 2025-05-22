@@ -246,3 +246,55 @@ button.btn {
   margin: 0;
 }
 
+
+
+/* ===== CreateQuote Page ===== */
+.quote-form-container {
+  max-width: 550px;
+  margin: 60px auto;
+}
+
+.quote-form-card {
+  padding: 25px;
+  border-radius: 8px;
+}
+
+/* Improve input appearance */
+.input-field input[type="text"] {
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
+.input-field label {
+  color: #607d8b; /* blue-grey */
+}
+
+/* Materialize override for active label */
+.input-field label.active {
+  transform: translateY(-20px) scale(0.8);
+}
+
+/* Feedback panels */
+.card-panel.green {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.card-panel.red {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .quote-form-container {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  .quote-form-card h4 {
+    font-size: 1.6rem;
+  }
+}
+
+
