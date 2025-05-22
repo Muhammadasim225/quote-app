@@ -5,6 +5,7 @@ import { get_login } from '../gqloperations/mutations';
 import { getMyProfile } from '../gqloperations/queries';
 
 const Login = () => {
+  const client=useApolloClient();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [signInUser, { error, loading, data }] = useMutation(get_login,{
