@@ -9,38 +9,35 @@ const Navbar = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    // Initialize Materialize sidenav
-    const elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems, { edge: 'left', draggable: true });
+    // Initialize sidenav for mobile responsiveness
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    client.clearStore();
+    client.clearStore(); // Clear Apollo Client cache
     navigate('/login');
   };
 
   return (
     <>
-      <nav className="nav-wrapper deep-purple darken-4 z-depth-2">
-        <div className="container">
-          <Link to="/" className="brand-logo" style={{ fontWeight: 600 }}>
-            QuoteApp
-          </Link>
-          <a href="#!" data-target="mobile-nav" className="sidenav-trigger right">
+      <nav className="blue-grey darken-3">
+        <div className="nav-wrapper container">
+          <Link to="/" className="brand-logo">QuoteApp</Link>
+          <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
 
-          <ul className="right hide-on-med-and-down">
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
             {token ? (
               <>
-                <li><Link to="/profile" className="nav-link">Profile</Link></li>
-                <li><Link to="/create-quote" className="nav-link">Create</Link></li>
-                <li>
+                <li><Link to="/profile">Profile</Link></li>
+                <li><Link to="/create-quote">Create</Link></li>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
                   <button
                     onClick={handleLogout}
-                    className="btn pink lighten-2 waves-effect waves-light"
-                    style={{ marginTop: "8px" }}
+                    className="btn red lighten-1 waves-effect waves-light"
+                    style={{ margin: 0 }}
                   >
                     Logout
                   </button>
@@ -48,24 +45,25 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <li><Link to="/login" className="nav-link">Login</Link></li>
-                <li><Link to="/signup" className="nav-link">Signup</Link></li>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/signup">Signup</Link></li>
               </>
             )}
           </ul>
         </div>
       </nav>
 
-      <ul className="sidenav deep-purple darken-4" id="mobile-nav">
+      {/* Mobile Navigation */}
+      <ul className="sidenav" id="mobile-nav">
         {token ? (
           <>
-            <li><Link className="white-text" to="/profile">Profile</Link></li>
-            <li><Link className="white-text" to="/create-quote">Create</Link></li>
-            <li style={{ display: 'flex', alignItems: 'center' }}>
+            <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/create-quote">Create</Link></li>
+            <li>
               <button
                 onClick={handleLogout}
-                className="btn pink lighten-2 waves-effect waves-light"
-                style={{ margin: 0 }}
+                className="btn red lighten-1 waves-effect waves-light"
+                style={{ width: '100%', marginTop: '10px' }}
               >
                 Logout
               </button>
@@ -73,8 +71,8 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <li><Link className="white-text" to="/login">Login</Link></li>
-            <li><Link className="white-text" to="/signup">Signup</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
           </>
         )}
       </ul>
