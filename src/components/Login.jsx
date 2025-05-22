@@ -43,7 +43,6 @@ const Login = () => {
       <div className="card z-depth-3">
         <div className="card-content">
           <h4 className="center-align blue-grey-text text-darken-3">🔐 Login</h4>
-          <h4 className="center-align blue-grey-text text-darken-3">🔐 Login</h4>
           <div className="divider" style={{ margin: '20px 0' }}></div>
 
           {error && (
