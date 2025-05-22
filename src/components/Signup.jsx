@@ -25,8 +25,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="container" style={{ maxWidth: "550px", marginTop: "8%" }}>
-      <div className="card z-depth-3">
+    <div className="container auth-container">
+      <div className="card z-depth-3 auth-card">
         <div className="card-content">
           <h4 className="center-align blue-grey-text text-darken-3">📝 Sign Up</h4>
           <div className="divider" style={{ margin: "20px 0" }}></div>
@@ -45,7 +45,8 @@ const Signup = () => {
 
           {data && data.user && (
             <div className="card-panel green lighten-2 white-text center-align">
-              {data.user.firstname} is signed up! You can now <Link to="/login" className="white-text text-bold">login</Link>.
+              {data.user.firstname} is signed up! You can now{" "}
+              <Link to="/login" className="white-text text-bold">login</Link>.
             </div>
           )}
 
