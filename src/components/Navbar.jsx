@@ -61,11 +61,11 @@ const Navbar = () => {
           <>
             <li><Link className="white-text" to="/profile">Profile</Link></li>
             <li><Link className="white-text" to="/create-quote">Create</Link></li>
-            <li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
               <button
                 onClick={handleLogout}
                 className="btn pink lighten-2 waves-effect waves-light"
-                style={{ width: '90%', margin: '10px auto' }}
+                style={{ margin: 0 }}
               >
                 Logout
               </button>
