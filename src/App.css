@@ -195,3 +195,54 @@ button.btn {
   font-size: 1rem;
 }
 
+
+/* ====== Profile Page Styling ====== */
+.profile-container {
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+.profile-card {
+  padding: 30px 15px;
+  border-radius: 8px;
+}
+
+.profile-img {
+  border: 3px solid #7e57c2;
+  padding: 4px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* ====== Quotes Section ====== */
+.quotes-section {
+  margin-top: 30px;
+}
+
+.quote-card {
+  margin-bottom: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.quote-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ====== Typography ====== */
+.quote-text {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #37474f;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Reuse from earlier styles */
+.custom-blockquote {
+  border-left: 4px solid #7e57c2;
+  padding-left: 15px;
+  margin: 0;
+}
+
