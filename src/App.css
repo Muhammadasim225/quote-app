@@ -1,45 +1,28 @@
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ========== Global Reset ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+/* ========== Body Styling ========== */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
+  color: #263238;
+  line-height: 1.6;
 }
 
-.animated.fadeIn {
-  animation: fadeIn 0.5s ease-in-out both;
+/* ========== Headings ========== */
+h4, h5, h6 {
+  font-weight: 500;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-input[type="email"],
-input[type="password"] {
-  font-size: 1rem;
-}
-
-@media screen and (max-width: 600px) {
-  h4 {
-    font-size: 1.6rem;
-  }
-  .input-field input {
-    font-size: 0.95rem;
-  }
-}
-
+/* ========== Responsive Quote Grid ========== */
 .quote-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 24px;
 }
 
 @media screen and (min-width: 600px) {
@@ -54,56 +37,54 @@ input[type="password"] {
   }
 }
 
+/* ========== Quote Card Styling ========== */
 .quote-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .quote-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* ========== Blockquote ========== */
 .custom-blockquote {
   border-left: 4px solid #7e57c2;
   padding-left: 15px;
   margin: 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
 }
 
+/* ========== Quote Text ========== */
 .quote-text {
   font-style: italic;
-  color: #37474f; /* blue-grey darken-3 */
+  color: #37474f;
   font-size: 1.1rem;
-  line-height: 1.5;
-  max-height: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 7; /* number of lines before cutting */
-  -webkit-box-orient: vertical;
+  line-height: 1.6;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
+/* ========== Author Text ========== */
 .author-text {
   font-weight: 500;
   text-align: right;
-  color: #ec407a; /* pink lighten-1 */
+  color: #ec407a;
   margin-top: 10px;
   display: block;
 }
 
-@media screen and (max-width: 600px) {
-  .quote-text {
-    font-size: 1rem;
-    -webkit-line-clamp: 6;
-  }
+/* ========== Preloader Spinner Centering ========== */
+.center-align {
+  text-align: center;
 }
 
+/* ========== Animations ========== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -117,4 +98,54 @@ input[type="password"] {
 
 .animated.fadeIn {
   animation: fadeIn 0.5s ease-in both;
+}
+
+/* ========== Form Layout Fixes ========== */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
+button.btn {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* ========== Materialize Overrides ========== */
+.nav-wrapper .brand-logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.nav-wrapper a {
+  transition: color 0.3s ease;
+}
+
+.nav-wrapper a:hover {
+  color: #ec407a !important;
+}
+
+.sidenav {
+  padding-top: 20px;
+}
+
+/* ========== Responsive Typography ========== */
+@media screen and (max-width: 600px) {
+  .quote-text {
+    font-size: 1rem;
+  }
+
+  .author-text {
+    font-size: 0.95rem;
+  }
+
+  .nav-wrapper .brand-logo {
+    font-size: 1.4rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
 }
