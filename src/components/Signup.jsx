@@ -25,10 +25,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="container auth-container">
-      <div className="card z-depth-3 auth-card">
+    <div className="container" style={{ maxWidth: '500px', marginTop: '8%' }}>
+      <div className="card z-depth-3 hoverable animated fadeIn">
         <div className="card-content">
-          <h4 className="center-align blue-grey-text text-darken-3">📝 Sign Up</h4>
+          <h4 className="center-align deep-purple-text text-darken-3">📝 Sign Up</h4>
           <div className="divider" style={{ margin: "20px 0" }}></div>
 
           {error && (
@@ -38,8 +38,8 @@ const Signup = () => {
           )}
 
           {loading && (
-            <div className="progress">
-              <div className="indeterminate"></div>
+            <div className="progress pink lighten-3">
+              <div className="indeterminate pink darken-1"></div>
             </div>
           )}
 
@@ -96,13 +96,13 @@ const Signup = () => {
             </div>
 
             <div className="right-align" style={{ marginBottom: "20px" }}>
-              <Link to="/login" className="blue-text text-darken-2">
+              <Link to="/login" className="deep-purple-text text-darken-3">
                 Already have an account?
               </Link>
             </div>
 
             <button
-              className="btn waves-effect waves-light blue-grey darken-2 z-depth-1"
+              className="btn waves-effect waves-light deep-purple darken-2 z-depth-1"
               type="submit"
               style={{ width: "100%" }}
             >
