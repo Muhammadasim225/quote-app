@@ -9,7 +9,7 @@ const Profile = () => {
 
 
   const { error, loading, data } = useQuery(getMyProfile, {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
   });
     useEffect(() => {
     if (!localStorage.getItem('token')) {
