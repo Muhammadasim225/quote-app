@@ -12,9 +12,9 @@ const Navbar = () => {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
     localStorage.removeItem('token');
-    client.clearStore(); // This clears the cache
+    await client.clearStore(); // This clears the cache
     navigate('/login');
   };
 
