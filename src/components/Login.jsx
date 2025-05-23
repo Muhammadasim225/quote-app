@@ -9,10 +9,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 const [signInUser,  { error, loading, data }] = useMutation(get_login);
-    if (data) {
-    localStorage.setItem('token', data.loginUser.token);
-    navigate('/');
-  }
+  if (data) {
+  localStorage.setItem('token', data.loginUser.token);
+  await client.clearStore(); // Clear the Apollo cache
+  navigate('/');
+}
 
 
 
