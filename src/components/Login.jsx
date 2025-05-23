@@ -8,18 +8,22 @@ const Login = () => {
   const client = useApolloClient();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
- const { refetch: refetchProfile } = useQuery(getMyProfile, { skip: true });
+const [signInUser, { error, loading }] = useMutation(get_login, {
+    onCompleted: async (data) => {
+      const token = data?.loginUser?.token;
 
-const [signInUser] = useMutation(get_login, {
-  onCompleted: async () => {
-    await refetchProfile();
-  },
-});
+      if (token) {
+        localStorage.setItem('token', token);      // ✅ 1. Set token first
+        await client.clearStore();                 // ✅ 2. Clear old cache
+        await client.refetchQueries({              // ✅ 3. Optionally refetch active queries
+          include: [getMyProfile],
+        });
+        navigate('/profile');                      // ✅ 4. Navigate to profile
+      }
+    }
+  });
 
-  if (data) {
-    localStorage.setItem('token', data.loginUser.token);
-    navigate('/');
-  }
+
 
   const handleChange = (e) => {
     setFormData({
