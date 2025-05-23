@@ -8,11 +8,11 @@ const Login = () => {
   const client = useApolloClient();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [signInUser, { error, loading, data }] = useMutation(get_login, {
+ const { refetch: refetchProfile } = useQuery(getMyProfile, { skip: true });
+
+const [signInUser] = useMutation(get_login, {
   onCompleted: async () => {
-    await client.refetchQueries({
-      include: [getMyProfile],
-    });
+    await refetchProfile();
   },
 });
 
