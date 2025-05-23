@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const { loading, error, data } = useQuery(get_all_quote, {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
   });
 
   if (loading) {
