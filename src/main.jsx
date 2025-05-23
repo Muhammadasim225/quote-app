@@ -7,30 +7,16 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  HttpLink
+
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
 
-// Create a link to your GraphQL server
-const httpLink = new HttpLink({
-  uri: import.meta.env.VITE_API_URL || "/graphql",
-});
-
-// Dynamically attach the token from localStorage
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  };
-});
-
-// Combine the auth and HTTP links
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  uri: import.meta.env.VITE_API_URL || "/graphql", // Use the VITE_API_URL variable, fallback to '/graphql' in development
+
   cache: new InMemoryCache(),
+  headers:{
+    authorization:localStorage.getItem("token") || " "
+  }
 });
 
 createRoot(document.getElementById("root")).render(
