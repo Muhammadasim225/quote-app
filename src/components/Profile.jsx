@@ -10,7 +10,6 @@ const Profile = () => {
 
 
   const { error, loading, data, refetch } = useQuery(getMyProfile, {
-    fetchPolicy: 'network-only',
     pollInterval:2000
   });
  useEffect(() => {
