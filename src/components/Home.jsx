@@ -4,7 +4,9 @@ import { get_all_quote } from "../gqloperations/queries";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { loading, error, data } = useQuery(get_all_quote);
+  const { loading, error, data } = useQuery(get_all_quote, {
+    fetchPolicy: 'cache-and-network',
+  });
 
   if (loading) {
     return (
