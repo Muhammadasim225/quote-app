@@ -9,8 +9,12 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [signInUser, { error, loading, data }] = useMutation(get_login, {
-    refetchQueries: [{ query: getMyProfile }]
-  });
+  onCompleted: async () => {
+    await client.refetchQueries({
+      include: [getMyProfile],
+    });
+  },
+});
 
   if (data) {
     localStorage.setItem('token', data.loginUser.token);
