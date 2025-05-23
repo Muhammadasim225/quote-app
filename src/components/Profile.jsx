@@ -2,18 +2,26 @@ import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { getMyProfile } from '../gqloperations/queries';
 import { useNavigate } from 'react-router-dom';
+import { useApolloClient } from '@apollo/client';
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [shouldFetch, setShouldFetch] = useState(false);
+  const client = useApolloClient();
+  const [retryCount, setRetryCount] = useState(0);
+  const [forceRefresh, setForceRefresh] = useState(false);
 
   const { error, loading, data, refetch } = useQuery(getMyProfile, {
-    skip: !shouldFetch, // Don't execute immediately
-    fetchPolicy: 'network-only', // Always fetch fresh data
+    fetchPolicy: 'network-only',
     onError: (error) => {
-      console.error("Profile fetch error:", error);
-      // You could add automatic retry logic here if needed
-    }
+      console.error('Profile fetch error:', error);
+      // Auto-retry logic for network errors
+      if (error.networkError && retryCount < 2) {
+        setTimeout(() => {
+          refetch();
+          setRetryCount(retryCount + 1);
+        }, 1000);
+      }
+    },
   });
 
   useEffect(() => {
@@ -21,32 +29,24 @@ const Profile = () => {
     if (!token) {
       navigate('/login');
     } else {
-      // Wait briefly to ensure Apollo client has the token
-      setTimeout(() => {
-        setShouldFetch(true);
-        refetch();
-      }, 100);
+      // Reset retry count when token changes
+      setRetryCount(0);
+      // Force refresh when component mounts or token changes
+      refetch();
     }
-  }, [navigate]);
+  }, [navigate, client]);
 
-  // Improved error handling
-  if (error) {
-    return (
-      <div className="container center-align" style={{ marginTop: '12%' }}>
-        <i className="material-icons large red-text">error</i>
-        <h5 className="grey-text text-darken-3">Failed to load profile</h5>
-        <button 
-          className="btn pink darken-1 waves-effect waves-light"
-          onClick={() => refetch()}
-          style={{ marginTop: '20px' }}
-        >
-          Retry
-        </button>
-      </div>
-    );
-  }
+  const handleManualRefresh = async () => {
+    try {
+      await client.resetStore(); // Clear entire Apollo cache
+      await refetch(); // Force fresh fetch
+      setForceRefresh(!forceRefresh); // Trigger re-render
+    } catch (err) {
+      console.error('Refresh failed:', err);
+    }
+  };
 
-  if (loading) {
+  if (loading && !data) {
     return (
       <div className="center-align" style={{ marginTop: '12%' }}>
         <div className="preloader-wrapper big active">
@@ -63,19 +63,112 @@ const Profile = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="container center-align" style={{ marginTop: '12%' }}>
+        <i className="material-icons large red-text">error_outline</i>
+        <h5 className="grey-text text-darken-3">Failed to load profile</h5>
+        <p className="red-text text-lighten-2">{error.message}</p>
+        
+        <div style={{ marginTop: '30px' }}>
+          <button
+            className="btn waves-effect waves-light deep-purple darken-2"
+            onClick={handleManualRefresh}
+            style={{ marginRight: '10px' }}
+          >
+            <i className="material-icons left">refresh</i> Try Again
+          </button>
+          
+          <button
+            className="btn waves-effect waves-light pink darken-1"
+            onClick={() => {
+              localStorage.removeItem('token');
+              client.resetStore();
+              navigate('/login');
+            }}
+          >
+            <i className="material-icons left">exit_to_app</i> Re-login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (!data?.ppf) {
     return (
-      <h5 className="center-align grey-text text-darken-2">
-        No profile data found.
-      </h5>
+      <div className="container center-align" style={{ marginTop: '12%' }}>
+        <i className="material-icons large grey-text">account_circle</i>
+        <h5 className="grey-text text-darken-2">No profile data found</h5>
+        <button
+          className="btn waves-effect waves-light deep-purple darken-2"
+          onClick={handleManualRefresh}
+        >
+          <i className="material-icons left">refresh</i> Refresh Data
+        </button>
+      </div>
     );
   }
 
   const { firstname, lastname, email, quotes } = data.ppf;
 
   return (
-    <div className="container profile-container">
-      {/* Rest of your profile UI remains the same */}
+    <div className="container profile-container" style={{ maxWidth: '800px', marginTop: '2%' }}>
+      <div className="card z-depth-2 profile-card hoverable">
+        <div className="card-content center-align">
+          <img
+            className="circle responsive-img profile-img"
+            src={`https://robohash.org/${firstname}?size=150x150&set=set4`}
+            alt="Profile"
+            style={{ width: '150px', height: '150px', marginTop: '20px' }}
+          />
+          <h4 className="blue-grey-text text-darken-3" style={{ marginTop: '20px' }}>
+            {firstname} {lastname}
+          </h4>
+          <h6 className="pink-text text-darken-2">
+            <i className="material-icons tiny">email</i> {email}
+          </h6>
+          
+          <button
+            className="btn-floating btn-small waves-effect waves-light deep-purple darken-2"
+            onClick={handleManualRefresh}
+            style={{ position: 'absolute', top: '10px', right: '10px' }}
+            title="Refresh profile"
+          >
+            <i className="material-icons">refresh</i>
+          </button>
+        </div>
+      </div>
+
+      <div className="quotes-section" style={{ marginTop: '40px' }}>
+        <h5 className="blue-grey-text text-darken-3">
+          <i className="material-icons left">format_quote</i> Your Quotes
+        </h5>
+        <div className="divider" style={{ margin: '15px 0 30px 0' }}></div>
+
+        {quotes.length > 0 ? (
+          <div className="row">
+            {quotes.map((quote, index) => (
+              <div key={index} className="col s12 m6 l4">
+                <div className="card z-depth-1 hoverable">
+                  <div className="card-content">
+                    <blockquote className="blue-grey-text text-darken-2">
+                      "{quote.name}"
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="card-panel grey lighten-4">
+            <p className="grey-text text-darken-2 center-align">
+              <i className="material-icons large">sentiment_dissatisfied</i>
+              <br />
+              You haven't created any quotes yet.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
