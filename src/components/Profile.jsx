@@ -5,17 +5,20 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
 
 
-  const { error, loading, data } = useQuery(getMyProfile, {
+  const { error, loading, data, refetch } = useQuery(getMyProfile, {
     fetchPolicy: 'network-only',
   });
-    useEffect(() => {
-    if (!localStorage.getItem('token')) {
+ useEffect(() => {
+    if (!token) {
       navigate('/login');
+    } else {
+      refetch(); // Force refetch when token is present
     }
-  }, [navigate]);
+  }, [navigate, token, refetch]);
 
   if (loading) {
     return (
