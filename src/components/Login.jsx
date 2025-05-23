@@ -8,22 +8,11 @@ const Login = () => {
   const client = useApolloClient();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-const [signInUser, { error, loading }] = useMutation(get_login,  {
-    onCompleted: async (data) => {
-      const token = data?.loginUser?.token;
-
-      if (token) {
-        // ✅ 1. Save the token
-        localStorage.setItem('token', token);
-
-        // ✅ 2. Clear Apollo cache
-        await client.clearStore();
-
-        // ✅ 3. Navigate to profile
-        navigate('/');
-      }
-    }
-  });
+const [signInUser,  { error, loading, data }] = useMutation(get_login);
+    if (data) {
+    localStorage.setItem('token', data.loginUser.token);
+    navigate('/');
+  }
 
 
 
