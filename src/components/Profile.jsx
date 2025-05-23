@@ -11,6 +11,11 @@ const Profile = () => {
 
   const { error, loading, data, refetch } = useQuery(getMyProfile, {
     fetchPolicy: 'network-only',
+    onError: (error) => {
+    console.error("Profile fetch error:", error);
+    // Optionally force a refetch
+    setTimeout(() => refetch(), 1000);
+  }
   });
  useEffect(() => {
     if (!token) {
