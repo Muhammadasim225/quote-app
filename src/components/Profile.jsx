@@ -6,15 +6,16 @@ import { useNavigate } from 'react-router-dom';
 const Profile = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
+
+
+  const { error, loading, data } = useQuery(getMyProfile, {
+    fetchPolicy: 'cache-and-network',
+  });
+    useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate('/login');
     }
   }, [navigate]);
-
-  const { error, loading, data } = useQuery(getMyProfile, {
-    fetchPolicy: 'network-only',
-  });
 
   if (loading) {
     return (
