@@ -2,10 +2,6 @@
 
 A modern, responsive Quote Application built with React, Apollo Client, GraphQL, JWT authentication, and Materialize CSS. This frontend interfaces seamlessly with a Node.js backend powered by Apollo Server and MongoDB.
 
-## 🚀 Live Demo
-
-👉 [Visit the Live App](https://quote-app-dun.vercel.app/)
-
 ## 🧰 Tech Stack
 
 - **Frontend**: React, React Router, Apollo Client, Materialize CSS
